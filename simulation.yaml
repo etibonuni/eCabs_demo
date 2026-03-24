@@ -1,0 +1,9 @@
+simulation:
+  driver-count-avg: 10
+  driver-count-std-dev: 3
+  driver-min-registered-time: 600000 # 10 minutes
+  driver-max-registered-time: 1800000 # 30 minutes
+  ride-count-avg: 5
+  ride-count-std-dev: 2
+  ride-time-per-distance: 1000 # 1 second per unit of distance
+  time-multiplier: 10.0

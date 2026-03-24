@@ -1,0 +1,29 @@
+# Stage 1: Build the application and copy dependencies
+FROM maven:3.8.5-openjdk-17 AS build
+WORKDIR /app
+COPY pom.xml .
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+# Stage 2: Create the final simulation image
+FROM openjdk:27-ea-slim-trixie
+
+WORKDIR /app
+
+# Install curl for a health check
+RUN apt-get update && apt-get install -y curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
+# Copy the application JAR (thin) and the executable JAR
+COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/demo-0.0.1-SNAPSHOT-exec.jar app-exec.jar
+# Copy all dependency JARs
+COPY --from=build /app/target/libs /app/libs
+# Copy the startup script and simulation config
+COPY docker/start-simulation.sh .
+COPY simulation.yaml .
+
+# Make the script executable
+RUN chmod +x start-simulation.sh
+
+# Run the startup script
+CMD ["./start-simulation.sh"]
