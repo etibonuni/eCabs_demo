@@ -80,6 +80,6 @@ The Swagger OpenAI API documentation can be accessed at `http://localhost:8080/s
 - `PUT /api/v1/drivers/{driverId}/location?latitude={lat}&longitude={lon}`: Update a driver's location.
 - `POST /api/v1/rides?pickupLatitude={lat}&pickupLongitude={lon}`: Request a new ride.
 - `POST /api/v1/drivers?latitude={lat}&longitude={lon}&nane=name`: Register a new driver.
-- `GET /api/v1/drivers/available?latitude={lat}&longitude={lon}&limit={limit}`: Get a list of available drivers.
+- `GET /api/v1/drivers/available?latitude={lat}&longitude={lon}&limit={limit}`: Get a list of available drivers ordered by proximity.
 - `DELETE /api/v1/drivers/{driverId}`: Unregister a driver
 
