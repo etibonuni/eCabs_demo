@@ -11,7 +11,7 @@ ride-sharing service:
 
 - Class DriverSimlator creates driver register/unregister request traffic which is configured via application.yaml or alternaticvely and external simulation.yaml file
 - Class RiderSimulator similarly creates and ends ride requests which are also configurable
-- Class SimulationUI connects to a websocket provided by the rideshare web service through which it gets real-time updates regarding driver and ride actions, displaying them to the user in real-time
+- Class SimulationUI connects to a STOMP websocket provided by the rideshare web service through which it gets real-time updates regarding driver and ride actions, displaying them to the user in real-time
 
 All three classes provide a main() function so that they can be run independently of the main Spring application. Additionally, if the 
 `simulation` profile is activated in the Spring app at startup, it will initiaise instances of DriverSimulator and RiderSimulator
